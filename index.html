@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>STARS TAPE – Proizvodnja lepljivih traka za pakovanje</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="STARS TAPE – firma iz Vranja koja se bavi proizvodnjom lepljivih traka za pakovanje. Kvalitetne trake za magacine, web shopove i firme.">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        :root {
+            --red: #f97373;
+            --red-strong: #ef4444;
+            --red-deep: #b91c1c;
+            --bg: #020617;
+            --bg-alt: #050815;
+            --card-bg: #020617;
+            --border: #111827;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+        }
+
+        body {
+            background:
+                linear-gradient(rgba(2, 6, 23, 0.82), rgba(2, 6, 23, 0.90)),
+                url('trake-pozadina.jpg') center center / cover no-repeat fixed;
+            color: var(--text);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* INTRO OVERLAY (AURA ENTRANCE) */
+        .intro-overlay {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at top, #f97373 0, #b91c1c 35%, #020617 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .intro-inner {
+            text-align: center;
+            animation: introPop 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px) scale(0.95);
+        }
+
+        .intro-logo {
+            height: 70px;
+            width: auto;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.6));
+        }
+
+        .intro-title {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .intro-sub {
+            font-size: 14px;
+            margin-top: 6px;
+            opacity: 0.9;
+        }
+
+        .intro-tape {
+            margin-top: 24px;
+            width: 260px;
+            height: 18px;
+            border-radius: 999px;
+            background:
+                    repeating-linear-gradient(
+                            135deg,
+                            rgba(255,255,255,0.85) 0 12px,
+                            transparent 12px 24px
+                    );
+            background-color: rgba(0,0,0,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-tape::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                    repeating-linear-gradient(
+                            135deg,
+                            #ffffff 0 12px,
+                            rgba(255,255,255,0.1) 12px 24px
+                    );
+            animation: tapeMove 2s linear infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes tapeMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(24px); }
+        }
+
+        @keyframes introPop {
+            0% {
+                opacity: 0;
+                transform: translateY(15px) scale(0.9);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(0) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .intro-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
+        }
+
+        /* HEADER + ANIM TAPE */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(2, 6, 23, 0.98);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            padding: 16px 32px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 5px;
+            background:
+                    repeating-linear-gradient(
+                            135deg,
+                            rgba(255, 255, 255, 0.7) 0 10px,
+                            transparent 10px 20px
+                    );
+            background-color: var(--red-deep);
+            animation: slideTape 8s linear infinite;
+        }
+
+        @keyframes slideTape {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(25%); }
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+        }
+
+        .logo-text {
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--red);
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+
+        nav a {
+            margin-left: 20px;
+            font-size: 14px;
+            color: var(--muted);
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.2s ease-out;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* HERO */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 40px 32px 50px;
+            background:
+                radial-gradient(circle at top left, rgba(248,113,113,0.14) 0, transparent 55%),
+                radial-gradient(circle at bottom right, rgba(248,113,113,0.1) 0, transparent 60%);
+        }
+
+        .hero-text {
+            max-width: 550px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease-out 0.4s forwards;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--red-deep);
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            color: #f9fafb;
+        }
+
+        .hero p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--muted);
+        }
+
+        .hero-actions {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+        }
+
+        .btn-primary {
+            background: var(--red-deep);
+            color: #ffffff;
+            box-shadow: 0 8px 18px rgba(248,113,113,0.45);
+        }
+
+        .btn-primary:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(248,113,113,0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+
+        .btn-outline:hover {
+            background: rgba(148,27,27,0.25);
+            transform: translateY(-1px);
+        }
+
+        .hero-note {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .hero-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 18px 20px;
+            min-width: 260px;
+            max-width: 320px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease-out 0.7s forwards;
+        }
+
+        .hero-box::before {
+            content: "";
+            position: absolute;
+            top: -40%;
+            right: -40%;
+            width: 120px;
+            height: 120px;
+            border-radius: 999px;
+            border: 4px solid rgba(248,113,113,0.2);
+        }
+
+        .hero-box-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--red);
+        }
+
+        .hero-box p {
+            font-size: 13px;
+            margin-bottom: 4px;
+            color: var(--muted);
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sekcije */
+        section {
+            padding: 30px 32px 40px;
+        }
+
+        section h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #f9fafb;
+        }
+
+        .muted {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out, background 0.15s ease-out;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--red);
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.6);
+            border-color: rgba(248,113,113,0.6);
+            background: #020617;
+        }
+
+        .section-alt {
+            background: var(--bg-alt);
+        }
+
+        /* SLIDER */
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: #020617;
+            margin-top: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 20px;
+        }
+
+        .slide-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .slide-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .slide-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f9fafb;
+        }
+
+        .slide-note {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .slider-controls {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .slider-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(15,23,42,0.9);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+            cursor: pointer;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--red);
+            margin: 0 8px;
+            transition: transform 0.1s ease-out, box-shadow 0.1s ease-out, background 0.1s ease-out;
+        }
+
+        .slider-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.9);
+            background: rgba(15,23,42,1);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 0 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #1f2937;
+            cursor: pointer;
+            transition: background 0.2s ease-out, transform 0.2s ease-out;
+        }
+
+        .dot.active {
+            background: var(--red);
+            transform: scale(1.1);
+        }
+
+        /* Kontakt */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .contact-list a {
+            color: var(--red);
+        }
+
+        .contact-list a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            position: relative;
+            padding: 20px 32px 18px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            text-align: center;
+            color: var(--muted);
+            margin-top: 20px;
+            background: #020617;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 4px;
+            background:
+                repeating-linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.7) 0 10px,
+                    transparent 10px 20px
+                );
+            background-color: var(--red-deep);
+            animation: slideTape 8s linear infinite;
+            opacity: 0.85;
+        }
+
+        /* Sticky call dugme na mobilnom */
+        .sticky-call {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red-deep);
+            color: #ffffff;
+            padding: 10px 24px;
+            border-radius: 999px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+            font-weight: 600;
+            font-size: 14px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            z-index: 40;
+        }
+
+        .sticky-call span {
+            font-size: 16px;
+        }
+
+        .sticky-call:active {
+            transform: translateX(-50%) translateY(1px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+        }
+
+        /* CLICK OVERLAY – STARS TAPE slova */
+        .click-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 6, 23, 0.92);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease-out;
+            z-index: 50;
+        }
+
+        .click-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .click-overlay-text {
+            font-size: clamp(40px, 8vw, 72px);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #fef2f2;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .click-overlay-text.pop {
+            animation: textPop 0.3s ease-out;
+        }
+
+        @keyframes textPop {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.6;
+            }
+            60% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            header {
+                padding: 12px 16px 10px;
+            }
+
+            .hero {
+                padding: 24px 16px 32px;
+            }
+
+            section {
+                padding: 24px 16px 32px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .intro-title {
+                font-size: 22px;
+            }
+
+            .sticky-call {
+                display: flex;
+            }
+        }
+
+        .map-wrapper iframe {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+        }
+    </style>
+</head>
+<body>
+
+<!-- INTRO OVERLAY -->
+<div class="intro-overlay" id="introOverlay">
+    <div class="intro-inner">
+        <img src="logo-stars-tape.png" alt="STARS TAPE logo" class="intro-logo">
+        <div class="intro-title">STARS TAPE</div>
+        <div class="intro-sub">Proizvodnja lepljivih traka za pakovanje</div>
+        <div class="intro-tape"></div>
+    </div>
+</div>
+
+<!-- CLICK OVERLAY – STARS TAPE slova -->
+<div class="click-overlay" id="clickOverlay">
+    <div class="click-overlay-text" id="clickOverlayText"></div>
+</div>
+
+<header>
+    <div class="logo-wrap" id="logoClick">
+        <img src="logo-stars-tape.png" alt="STARS TAPE logo" class="logo-img">
+        <div class="logo-text">Stars Tape</div>
+    </div>
+    <nav>
+        <a href="#prednosti">Prednosti</a>
+        <a href="#paketi">Paketi</a>
+        <a href="#onama">O nama</a>
+        <a href="#kontakt">Kontakt</a>
+    </nav>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="badge">Proizvodnja lepljivih traka za pakovanje</div>
+            <h1>Široke lepljive trake za sigurno pakovanje paketa.</h1>
+            <p>
+                <strong>STARS TAPE</strong> je firma iz Vranja koja se bavi proizvodnjom lepljivih traka
+                za pakovanje. Naše trake su namenjene magacinima, internet prodavnicama, kurirskim službama i svima
+                koji žele da im paketi stignu bezbedno do kupca.
+            </p>
+            <div class="hero-actions">
+                <a href="tel:+381621840435" class="btn btn-primary">📞 Pozovi za porudžbine</a>
+                <a href="mailto:starstapedoo@gmail.com" class="btn btn-outline">✉️ Pošalji upit</a>
+            </div>
+            <div class="hero-note">
+                Popust za veće količine i stalne saradnje.
+            </div>
+        </div>
+
+        <div class="hero-box">
+            <div class="hero-box-title">Glavni proizvod</div>
+            <p><strong>Tip:</strong> Široka lepljiva traka za pakovanje</p>
+            <p><strong>Namenjena za:</strong> kartonske kutije, magacine, selidbe</p>
+            <p><strong>Idealno za:</strong> web shopove, firme i skladišta</p>
+            <p class="hero-note">Detaljne specifikacije i cene po dogovoru.</p>
+        </div>
+    </section>
+
+    <!-- PREDNOSTI -->
+    <section id="prednosti" class="section-alt reveal">
+        <h2>Zašto baš STARS TAPE trake?</h2>
+        <p class="muted">Stabilan kvalitet, pouzdana isporuka i podrška za firme iz cele Srbije.</p>
+        <div class="grid">
+            <div class="card reveal">
+                <h3>Jaka lepljivost</h3>
+                <p>Trake dobro prijanjaju na karton i ne odvaja se lako tokom transporta,
+                    čak i kod težih paketa.</p>
+            </div>
+            <div class="card reveal">
+                <h3>Široka i praktična</h3>
+                <p>Šira traka omogućava brže i sigurnije zatvaranje kutija, uz manju potrošnju po paketu.</p>
+            </div>
+            <div class="card reveal">
+                <h3>Stalan kvalitet</h3>
+                <p>Proizvodnja sa ujednačenom debljinom i lepljivim slojem – manje iznenađenja u radu.</p>
+            </div>
+            <div class="card reveal">
+                <h3>Podrška za biznis</h3>
+                <p>Dogovor oko stalnih isporuka, popust na veće količine i saradnja sa firmama.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAKETI / SLIDER -->
+    <section id="paketi" class="reveal">
+        <h2>Paketi lepljivih traka</h2>
+        <p class="muted">
+            Primeri paketa – cene i tačan broj rolni mogu se prilagoditi po dogovoru.
+        </p>
+
+        <div class="slider-wrapper reveal">
+            <div class="slides" id="slides">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <div class="slide-inner">
+                        <div class="slide-title">Mali paket</div>
+                        <div class="slide-price">Idealno za manje radnje i povremeno pakovanje</div>
+                        <p>- Manji broj rolni (npr. 6–12 kom)</p>
+                        <p>- Dobar izbor za probu kvaliteta i početak saradnje</p>
+                        <p class="slide-note">Cena: po dogovoru, zavisi od količine.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <div class="slide-inner">
+                        <div class="slide-title">Srednji paket</div>
+                        <div class="slide-price">Za internet prodavnice i magacine</div>
+                        <p>- Veća količina rolni za redovno pakovanje</p>
+                        <p>- Povoljnija cena po rolni u odnosu na mali paket</p>
+                        <p class="slide-note">Preporuka za web shopove i skladišta.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <div class="slide-inner">
+                        <div class="slide-title">Veleprodajni paket</div>
+                        <div class="slide-price">Najbolji izbor za velike sisteme</div>
+                        <p>- Velike kutije sa većim brojem rolni</p>
+                        <p>- Mogućnost stalnih mesečnih isporuka</p>
+                        <p class="slide-note">Cena i uslovi: po dogovoru u zavisnosti od količine.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <button class="slider-btn" id="prevBtn">&#8249;</button>
+                <button class="slider-btn" id="nextBtn">&#8250;</button>
+            </div>
+        </div>
+
+        <div class="slider-dots" id="sliderDots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+        </div>
+    </section>
+
+    <!-- O NAMA -->
+    <section id="onama" class="section-alt reveal">
+        <h2>O kompaniji STARS TAPE</h2>
+        <p class="muted">
+            STARS TAPE DOO bavi se proizvodnjom lepljivih traka za pakovanje sa fokusom na kvalitet
+            i dugoročnu saradnju sa partnerima.
+        </p>
+        <div class="grid">
+            <div class="card reveal">
+                <h3>Ko smo mi</h3>
+                <p>
+                    STARS TAPE je firma iz Vranja koja proizvodi lepljive trake za pakovanje.
+                    Cilj nam je da obezbedimo stabilan kvalitet, pouzdanu isporuku i korektne uslove
+                    za sve naše kupce – od malih radnji do velikih sistema.
+                </p>
+            </div>
+            <div class="card reveal">
+                <h3>Gde se nalazimo</h3>
+                <p>
+                    Adresa: <br>
+                    <strong>Miodraga Stojkovića 11<br>17500 Vranje</strong>
+                </p>
+                <p class="muted" style="margin-top:8px;">
+                    Mogućnost isporuke kurirskim službama širom Srbije.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt" class="reveal">
+        <h2>Kontakt i porudžbine</h2>
+        <p class="muted">
+            Za sve informacije, ponude i porudžbine možete nas kontaktirati putem telefona ili mejla.
+        </p>
+
+        <div class="card reveal" style="margin-top:16px;">
+            <h3>Podaci firme</h3>
+            <div class="contact-list">
+                <div>📍 <strong>Adresa:</strong> Miodraga Stojkovića 11, 17500 Vranje</div>
+                <div>📞 <strong>Telefon:</strong> <a href="tel:+381621840435">062 184 0435</a></div>
+                <div>✉️ <strong>Email:</strong> <a href="mailto:starstapedoo@gmail.com">starstapedoo@gmail.com</a></div>
+            </div>
+            <p class="muted" style="margin-top:10px;">
+                Radno vreme i dodatne informacije o isporuci mogu se dogovoriti direktno putem poziva.
+            </p>
+        </div>
+    </section>
+
+    <!-- MAPA – Lokacija firme -->
+    <section id="lokacija" class="section-alt reveal">
+        <h2>Gde se nalazimo</h2>
+        <p class="muted">Možete nas pronaći na adresi Miodraga Stojkovića 11, Vranje.</p>
+
+        <div class="map-wrapper" style="margin-top:16px;">
+            <iframe
+                src="https://www.google.com/maps?q=Miodraga%20Stojkovi%C4%87a%2011%2C%20Vranje&output=embed"
+                width="100%"
+                height="350"
+                style="border:0; border-radius: 14px;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+</main>
+
+<!-- Sticky call – samo mobilni -->
+<a href="tel:+381621840435" class="sticky-call">
+    <span>📞</span> Pozovi odmah
+</a>
+
+<footer>
+    STARS TAPE &copy; <span id="year"></span> – Proizvodnja lepljivih traka za pakovanje
+</footer>
+
+<script>
+    // Godina u footeru
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Slider
+    const slidesContainer = document.getElementById('slides');
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function updateSlider(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        currentIndex = index;
+        const offset = -index * 100;
+        slidesContainer.style.transform = 'translateX(' + offset + '%)';
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    prevBtn.addEventListener('click', () => {
+        updateSlider(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        updateSlider(currentIndex + 1);
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index'), 10);
+            updateSlider(index);
+        });
+    });
+
+    // Auto-slajd na svaka 6 sekundi
+    setInterval(() => {
+        updateSlider(currentIndex + 1);
+    }, 6000);
+
+    // Intro overlay hide – 4s
+    const introOverlay = document.getElementById('introOverlay');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            introOverlay.classList.add('hide');
+        }, 4000);
+    });
+
+    // Scroll reveal logika
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // STARS TAPE slova na klik logotipa
+    const logoClick = document.getElementById('logoClick');
+    const clickOverlay = document.getElementById('clickOverlay');
+    const clickOverlayText = document.getElementById('clickOverlayText');
+
+    const phrase = "STARS TAPE";
+    let clickIndex = 0;
+
+    function advancePhrase() {
+        // ako je novi ciklus, prikaži overlay
+        if (!clickOverlay.classList.contains('show') && clickIndex === 0) {
+            clickOverlay.classList.add('show');
+        }
+
+        if (clickIndex < phrase.length) {
+            clickIndex++;
+            clickOverlayText.textContent = phrase.slice(0, clickIndex);
+
+            // mali pop efekat
+            clickOverlayText.classList.remove('pop');
+            void clickOverlayText.offsetWidth;
+            clickOverlayText.classList.add('pop');
+        }
+
+        if (clickIndex === phrase.length) {
+            setTimeout(() => {
+                clickOverlay.classList.remove('show');
+                clickOverlayText.textContent = "";
+                clickIndex = 0;
+            }, 900);
+        }
+    }
+
+    // prvi klik – logo
+    logoClick.addEventListener('click', advancePhrase);
+    // sledeći klikovi – bilo gde po overlay-u
+    clickOverlay.addEventListener('click', advancePhrase);
+</script>
+</body>
+</html>
