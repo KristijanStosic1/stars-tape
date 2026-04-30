@@ -26,6 +26,10 @@
             --muted: #9ca3af;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background:
                 linear-gradient(rgba(2, 6, 23, 0.82), rgba(2, 6, 23, 0.90)),
@@ -37,7 +41,10 @@
             text-decoration: none;
         }
 
-        /* INTRO OVERLAY (AURA ENTRANCE) */
+        img {
+            max-width: 100%;
+        }
+
         .intro-overlay {
             position: fixed;
             inset: 0;
@@ -85,11 +92,11 @@
             height: 18px;
             border-radius: 999px;
             background:
-                    repeating-linear-gradient(
-                            135deg,
-                            rgba(255,255,255,0.85) 0 12px,
-                            transparent 12px 24px
-                    );
+                repeating-linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.85) 0 12px,
+                    transparent 12px 24px
+                );
             background-color: rgba(0,0,0,0.35);
             position: relative;
             overflow: hidden;
@@ -100,11 +107,11 @@
             position: absolute;
             inset: 0;
             background:
-                    repeating-linear-gradient(
-                            135deg,
-                            #ffffff 0 12px,
-                            rgba(255,255,255,0.1) 12px 24px
-                    );
+                repeating-linear-gradient(
+                    135deg,
+                    #ffffff 0 12px,
+                    rgba(255,255,255,0.1) 12px 24px
+                );
             animation: tapeMove 2s linear infinite;
             opacity: 0.9;
         }
@@ -136,7 +143,6 @@
             transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
         }
 
-        /* HEADER + ANIM TAPE */
         header {
             position: sticky;
             top: 0;
@@ -159,11 +165,11 @@
             width: 200%;
             height: 5px;
             background:
-                    repeating-linear-gradient(
-                            135deg,
-                            rgba(255, 255, 255, 0.7) 0 10px,
-                            transparent 10px 20px
-                    );
+                repeating-linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.7) 0 10px,
+                    transparent 10px 20px
+                );
             background-color: var(--red-deep);
             animation: slideTape 8s linear infinite;
         }
@@ -226,7 +232,6 @@
             margin: 0 auto;
         }
 
-        /* HERO */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -355,7 +360,6 @@
             color: var(--muted);
         }
 
-        /* Scroll reveal */
         .reveal {
             opacity: 0;
             transform: translateY(18px);
@@ -378,7 +382,6 @@
             }
         }
 
-        /* Sekcije */
         section {
             padding: 30px 32px 40px;
         }
@@ -427,7 +430,80 @@
             background: var(--bg-alt);
         }
 
-        /* SLIDER */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .image-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.55);
+            border-color: rgba(248,113,113,0.5);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 350px;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            background: #0b1120;
+        }
+
+        .image-caption {
+            padding: 12px 14px 14px;
+            font-size: 13px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        .video-card {
+            margin-top: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .video-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 12px;
+        }
+
+        .video-wrap video {
+            width: 100%;
+            max-width: 860px;
+            max-height: 78vh;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+            background: #000;
+        }
+
+        .video-note {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
         .slider-wrapper {
             position: relative;
             overflow: hidden;
@@ -525,7 +601,6 @@
             transform: scale(1.1);
         }
 
-        /* Kontakt */
         .contact-list {
             display: flex;
             flex-direction: column;
@@ -572,7 +647,6 @@
             opacity: 0.85;
         }
 
-        /* Sticky call dugme na mobilnom */
         .sticky-call {
             position: fixed;
             bottom: 16px;
@@ -601,7 +675,6 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.7);
         }
 
-        /* CLICK OVERLAY – STARS TAPE slova */
         .click-overlay {
             position: fixed;
             inset: 0;
@@ -649,7 +722,6 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 700px) {
             header {
                 padding: 12px 16px 10px;
@@ -678,6 +750,18 @@
             .sticky-call {
                 display: flex;
             }
+
+            .video-wrap {
+                padding: 8px;
+            }
+
+            .video-wrap video {
+                max-width: 100%;
+            }
+
+            .image-card img {
+                height: 200px;
+            }
         }
 
         .map-wrapper iframe {
@@ -687,7 +771,6 @@
 </head>
 <body>
 
-<!-- INTRO OVERLAY -->
 <div class="intro-overlay" id="introOverlay">
     <div class="intro-inner">
         <img src="logo-stars-tape.png" alt="STARS TAPE logo" class="intro-logo">
@@ -697,7 +780,6 @@
     </div>
 </div>
 
-<!-- CLICK OVERLAY – STARS TAPE slova -->
 <div class="click-overlay" id="clickOverlay">
     <div class="click-overlay-text" id="clickOverlayText"></div>
 </div>
@@ -709,6 +791,8 @@
     </div>
     <nav>
         <a href="#prednosti">Prednosti</a>
+        <a href="#galerija">Galerija</a>
+        <a href="#video">Video</a>
         <a href="#paketi">Paketi</a>
         <a href="#onama">O nama</a>
         <a href="#kontakt">Kontakt</a>
@@ -716,7 +800,6 @@
 </header>
 
 <main>
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-text">
             <div class="badge">Proizvodnja lepljivih traka za pakovanje</div>
@@ -744,7 +827,48 @@
         </div>
     </section>
 
-    <!-- PREDNOSTI -->
+    <section id="galerija" class="reveal">
+        <h2>Naše trake u praksi</h2>
+        <p class="muted">
+            Prikaz proizvoda kroz stvarne fotografije – izgled rolne, širina trake i kvalitet materijala.
+        </p>
+
+        <div class="image-grid">
+            <div class="image-card reveal">
+                <img src="traka.jpeg" alt="Lepljiva traka STARS TAPE iz gornjeg ugla">
+                <div class="image-caption">
+                    Prikaz rolne iz gornjeg ugla – jasno se vidi oblik i dimenzija proizvoda.
+                </div>
+            </div>
+
+            <div class="image-card reveal">
+                <img src="trakaa.jpeg" alt="Bočni prikaz lepljive trake STARS TAPE">
+                <div class="image-caption">
+                    Bočni prikaz trake – vidi se širina rolne i struktura materijala.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="section-alt reveal">
+        <h2>Video prikaz proizvoda</h2>
+        <p class="muted">
+            Kratak video prikaz proizvoda i izgleda trake u realnim uslovima.
+        </p>
+
+        <div class="video-card reveal">
+            <div class="video-wrap">
+                <video controls preload="metadata" playsinline muted>
+                    <source src="trakaaa.mp4" type="video/mp4">
+                    Vaš browser ne podržava prikaz videa.
+                </video>
+            </div>
+            <p class="video-note">
+                Za veće količine, stalne isporuke i ponude po dogovoru kontaktirajte nas direktno.
+            </p>
+        </div>
+    </section>
+
     <section id="prednosti" class="section-alt reveal">
         <h2>Zašto baš STARS TAPE trake?</h2>
         <p class="muted">Stabilan kvalitet, pouzdana isporuka i podrška za firme iz cele Srbije.</p>
@@ -769,7 +893,6 @@
         </div>
     </section>
 
-    <!-- PAKETI / SLIDER -->
     <section id="paketi" class="reveal">
         <h2>Paketi lepljivih traka</h2>
         <p class="muted">
@@ -778,7 +901,6 @@
 
         <div class="slider-wrapper reveal">
             <div class="slides" id="slides">
-                <!-- Slide 1 -->
                 <div class="slide">
                     <div class="slide-inner">
                         <div class="slide-title">Mali paket</div>
@@ -789,7 +911,6 @@
                     </div>
                 </div>
 
-                <!-- Slide 2 -->
                 <div class="slide">
                     <div class="slide-inner">
                         <div class="slide-title">Srednji paket</div>
@@ -800,7 +921,6 @@
                     </div>
                 </div>
 
-                <!-- Slide 3 -->
                 <div class="slide">
                     <div class="slide-inner">
                         <div class="slide-title">Veleprodajni paket</div>
@@ -825,7 +945,6 @@
         </div>
     </section>
 
-    <!-- O NAMA -->
     <section id="onama" class="section-alt reveal">
         <h2>O kompaniji STARS TAPE</h2>
         <p class="muted">
@@ -854,7 +973,6 @@
         </div>
     </section>
 
-    <!-- KONTAKT -->
     <section id="kontakt" class="reveal">
         <h2>Kontakt i porudžbine</h2>
         <p class="muted">
@@ -874,7 +992,6 @@
         </div>
     </section>
 
-    <!-- MAPA – Lokacija firme -->
     <section id="lokacija" class="section-alt reveal">
         <h2>Gde se nalazimo</h2>
         <p class="muted">Možete nas pronaći na adresi Miodraga Stojkovića 11, Vranje.</p>
@@ -890,10 +1007,8 @@
             </iframe>
         </div>
     </section>
-
 </main>
 
-<!-- Sticky call – samo mobilni -->
 <a href="tel:+381621840435" class="sticky-call">
     <span>📞</span> Pozovi odmah
 </a>
@@ -903,10 +1018,8 @@
 </footer>
 
 <script>
-    // Godina u footeru
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Slider
     const slidesContainer = document.getElementById('slides');
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -943,12 +1056,10 @@
         });
     });
 
-    // Auto-slajd na svaka 6 sekundi
     setInterval(() => {
         updateSlider(currentIndex + 1);
     }, 6000);
 
-    // Intro overlay hide – 4s
     const introOverlay = document.getElementById('introOverlay');
     window.addEventListener('load', () => {
         setTimeout(() => {
@@ -956,7 +1067,6 @@
         }, 4000);
     });
 
-    // Scroll reveal logika
     const revealElements = document.querySelectorAll('.reveal');
 
     const observer = new IntersectionObserver((entries, obs) => {
@@ -972,7 +1082,6 @@
 
     revealElements.forEach(el => observer.observe(el));
 
-    // STARS TAPE slova na klik logotipa
     const logoClick = document.getElementById('logoClick');
     const clickOverlay = document.getElementById('clickOverlay');
     const clickOverlayText = document.getElementById('clickOverlayText');
@@ -981,7 +1090,6 @@
     let clickIndex = 0;
 
     function advancePhrase() {
-        // ako je novi ciklus, prikaži overlay
         if (!clickOverlay.classList.contains('show') && clickIndex === 0) {
             clickOverlay.classList.add('show');
         }
@@ -990,7 +1098,6 @@
             clickIndex++;
             clickOverlayText.textContent = phrase.slice(0, clickIndex);
 
-            // mali pop efekat
             clickOverlayText.classList.remove('pop');
             void clickOverlayText.offsetWidth;
             clickOverlayText.classList.add('pop');
@@ -1005,9 +1112,7 @@
         }
     }
 
-    // prvi klik – logo
     logoClick.addEventListener('click', advancePhrase);
-    // sledeći klikovi – bilo gde po overlay-u
     clickOverlay.addEventListener('click', advancePhrase);
 </script>
 </body>
